@@ -1,0 +1,79 @@
+{
+  "targets": {
+    "ch-factor": [
+      156,
+      260,
+      182,
+      310
+    ],
+    "ch-limits": [
+      529,
+      260,
+      586,
+      310
+    ],
+    "ch-bare-wrong": [
+      90,
+      150,
+      142,
+      200
+    ],
+    "imp-chain": [
+      192,
+      150,
+      241,
+      200
+    ],
+    "lim-zero": [
+      451,
+      150,
+      477,
+      200
+    ],
+    "hand-wrongline": [
+      544,
+      150,
+      604,
+      260
+    ],
+    "hand-factor": [
+      511,
+      150,
+      559,
+      238
+    ],
+    "hand-bare-wrong": [
+      120,
+      150,
+      248,
+      260
+    ],
+    "hand-offquestion": [
+      584,
+      150,
+      692,
+      260
+    ]
+  },
+  "question": {
+    "ch-correct": "q-challenge",
+    "ch-factor": "q-challenge",
+    "ch-limits": "q-challenge",
+    "ch-bare-wrong": "q-challenge",
+    "imp-correct": "q-implicit",
+    "imp-chain": "q-implicit",
+    "lim-correct": "q-limit",
+    "lim-zero": "q-limit",
+    "blank": "q-challenge",
+    "alt-lhopital": "q-limit",
+    "alt-backsub": "q-challenge",
+    "hand-wrongline": "q-challenge",
+    "hand-factor": "q-challenge",
+    "hand-correct-step": "q-challenge",
+    "hand-bare-wrong": "q-challenge",
+    "hand-unfinished": "q-challenge",
+    "hand-offquestion": "q-challenge",
+    "hand-offquestion-true": "q-challenge",
+    "scribble": "q-challenge"
+  }
+}

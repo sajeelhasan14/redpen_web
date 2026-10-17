@@ -1,0 +1,570 @@
+[
+ {
+  "id": "lim-factor",
+  "topic": "limits",
+  "prompt": "Evaluate \\lim_{x \\to 2} \\frac{x^2 - 4}{x - 2}.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Limit((x**2 - 4)/(x - 2), x, 2)",
+  "answer": "4",
+  "points": [
+   {"id": "P1", "label": "Cancels the common factor", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "x + 2"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Limit value", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "limit({P1}, x, 2)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "\\lim_{x \\to 2} \\frac{(x-2)(x+2)}{x-2}", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "= \\lim_{x \\to 2} (x+2)", "kind": "rewrite", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 4", "kind": "take_limit", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "lim-sin",
+  "topic": "limits",
+  "prompt": "Evaluate \\lim_{x \\to 0} \\frac{\\sin(3x)}{x}.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Limit(sin(3*x)/x, x, 0)",
+  "answer": "3",
+  "points": [
+   {"id": "P1", "label": "Differentiates top and bottom (L'Hopital)", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "3*cos(3*x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Limit value", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "3"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\lim_{x \\to 0} \\frac{\\sin(3x)}{x}", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "= \\lim_{x \\to 0} \\frac{3\\cos(3x)}{1}", "kind": "rewrite", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 3", "kind": "take_limit", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "lim-infinity",
+  "topic": "limits",
+  "prompt": "Evaluate \\lim_{x \\to \\infty} \\frac{3x^2 + 2x}{x^2 - 5}.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Limit((3*x**2 + 2*x)/(x**2 - 5), x, oo)",
+  "answer": "3",
+  "points": [
+   {"id": "P1", "label": "Divides through by the highest power", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "(3 + 2/x)/(1 - 5/x**2)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Limit value", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "3"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\lim_{x \\to \\infty} \\frac{3 + \\frac{2}{x}}{1 - \\frac{5}{x^2}}", "kind": "rewrite", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 3", "kind": "take_limit", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "lim-conjugate",
+  "topic": "limits",
+  "prompt": "Evaluate \\lim_{x \\to 3} \\frac{\\sqrt{x+1} - 2}{x - 3}.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Limit((sqrt(x + 1) - 2)/(x - 3), x, 3)",
+  "answer": "Rational(1, 4)",
+  "points": [
+   {"id": "P1", "label": "Simplifies using the conjugate", "value": 2, "kind": "cas", "check": {"type": "equivalent", "expected": "1/(sqrt(x + 1) + 2)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Limit value", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "limit({P1}, x, 3)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "\\lim_{x \\to 3} \\frac{(\\sqrt{x+1}-2)(\\sqrt{x+1}+2)}{(x-3)(\\sqrt{x+1}+2)}", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "= \\lim_{x \\to 3} \\frac{1}{\\sqrt{x+1}+2}", "kind": "rewrite", "point": "P1", "sub": null, "words": false},
+   {"latex": "= \\frac{1}{4}", "kind": "take_limit", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "lim-continuity",
+  "topic": "limits",
+  "prompt": "f(x) = x^2 + k for x < 1 and f(x) = 3x for x \\ge 1. Find k so that f is continuous at x = 1.",
+  "variable": "x",
+  "variables": ["x", "k"],
+  "answer": "2",
+  "points": [
+   {"id": "P1", "label": "States the condition for continuity", "value": 1, "kind": "judge", "criterion": "States that the left-hand and right-hand limits at x = 1 must be equal", "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Sets the two sides equal at x = 1", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(1 + k, 3)"}, "requires": [], "followThrough": false},
+   {"id": "P3", "label": "Value of k", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "2"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\text{left limit must equal right limit at } x = 1", "kind": "unknown", "point": "P1", "sub": null, "words": true},
+   {"latex": "1 + k = 3", "kind": "unknown", "point": "P2", "sub": null, "words": false},
+   {"latex": "k = 2", "kind": "rewrite", "point": "P3", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "der-power-eval",
+  "topic": "derivatives",
+  "prompt": "f(x) = x^3 + x^2. Find f'(2).",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "x**3 + x**2",
+  "answer": "16",
+  "points": [
+   {"id": "P1", "label": "Differentiates", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "diff(x**3 + x**2, x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Evaluates at x = 2", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, 2)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "f'(x) = 3x^2 + 2x", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "f'(2) = 16", "kind": "substitute", "point": "P2", "sub": {"variable": "x", "latex": "2"}, "words": false}
+  ]
+ },
+ {
+  "id": "der-product",
+  "topic": "derivatives",
+  "prompt": "Differentiate y = x^2 \\sin x.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "x**2*sin(x)",
+  "answer": "2*x*sin(x) + x**2*cos(x)",
+  "points": [
+   {"id": "P1", "label": "Product rule applied correctly", "value": 2, "kind": "cas", "check": {"type": "equivalent", "expected": "diff(x**2*sin(x), x)"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\frac{dy}{dx} = 2x \\sin x + x^2 \\cos x", "kind": "differentiate", "point": "P1", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "der-quotient",
+  "topic": "derivatives",
+  "prompt": "Differentiate y = \\frac{x^2 + 1}{x - 1}.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "(x**2 + 1)/(x - 1)",
+  "answer": "(x**2 - 2*x - 1)/(x - 1)**2",
+  "points": [
+   {"id": "P1", "label": "Quotient rule applied correctly", "value": 2, "kind": "cas", "check": {"type": "equivalent", "expected": "diff((x**2 + 1)/(x - 1), x)"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\frac{dy}{dx} = \\frac{2x(x-1) - (x^2+1)}{(x-1)^2}", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= \\frac{x^2 - 2x - 1}{(x-1)^2}", "kind": "rewrite", "point": null, "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "der-chain",
+  "topic": "derivatives",
+  "prompt": "Differentiate y = \\sin(x^2).",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "sin(x**2)",
+  "answer": "2*x*cos(x**2)",
+  "points": [
+   {"id": "P1", "label": "Chain rule applied correctly", "value": 2, "kind": "cas", "check": {"type": "equivalent", "expected": "diff(sin(x**2), x)"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\frac{dy}{dx} = 2x\\cos(x^2)", "kind": "differentiate", "point": "P1", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "der-chain-eval",
+  "topic": "derivatives",
+  "prompt": "y = (3x + 1)^4. Find \\frac{dy}{dx} at x = 0.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "(3*x + 1)**4",
+  "answer": "12",
+  "points": [
+   {"id": "P1", "label": "Chain rule", "value": 2, "kind": "cas", "check": {"type": "equivalent", "expected": "diff((3*x + 1)**4, x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Evaluates at x = 0", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, 0)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "\\frac{dy}{dx} = 12(3x+1)^3", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "12(1)^3 = 12", "kind": "substitute", "point": "P2", "sub": {"variable": "x", "latex": "0"}, "words": false}
+  ]
+ },
+ {
+  "id": "der-implicit",
+  "topic": "derivatives",
+  "prompt": "x^2 + y^2 = 25. Find \\frac{dy}{dx} at the point (3, 4).",
+  "variable": "x",
+  "variables": ["x", "y", "dy_dx"],
+  "answer": "Rational(-3, 4)",
+  "points": [
+   {"id": "P1", "label": "Differentiates both sides implicitly", "value": 2, "kind": "cas", "check": {"type": "equation", "expected": "Eq(2*x + 2*y*dy_dx, 0)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Solves for dy/dx", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "-x/y"}, "requires": [], "followThrough": false},
+   {"id": "P3", "label": "Evaluates at (3, 4)", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P2}).subs(x, 3).subs(y, 4)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "2x + 2y\\frac{dy}{dx} = 0", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\frac{dy}{dx} = -\\frac{x}{y}", "kind": "rewrite", "point": "P2", "sub": null, "words": false},
+   {"latex": "= -\\frac{3}{4}", "kind": "substitute", "point": "P3", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "der-tangent",
+  "topic": "derivatives",
+  "prompt": "Find the equation of the tangent line to f(x) = x^2 - 3x at x = 2.",
+  "variable": "x",
+  "variables": ["x", "y"],
+  "given": "x**2 - 3*x",
+  "answer": "x - 4",
+  "points": [
+   {"id": "P1", "label": "Differentiates", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "diff(x**2 - 3*x, x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Slope at x = 2", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, 2)"}, "requires": [], "followThrough": true},
+   {"id": "P3", "label": "Tangent line", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(y, {P2}*(x - 2) - 2)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "f'(x) = 2x - 3", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "f'(2) = 1", "kind": "substitute", "point": "P2", "sub": {"variable": "x", "latex": "2"}, "words": false},
+   {"latex": "y = 1(x - 2) - 2", "kind": "unknown", "point": "P3", "sub": null, "words": false},
+   {"latex": "y = x - 4", "kind": "rewrite", "point": null, "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "der-exp-log",
+  "topic": "derivatives",
+  "prompt": "Differentiate y = e^{2x} \\ln x.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "exp(2*x)*log(x)",
+  "answer": "2*exp(2*x)*log(x) + exp(2*x)/x",
+  "points": [
+   {"id": "P1", "label": "Product and chain rules applied correctly", "value": 2, "kind": "cas", "check": {"type": "equivalent", "expected": "diff(exp(2*x)*log(x), x)"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\frac{dy}{dx} = 2e^{2x}\\ln x + \\frac{e^{2x}}{x}", "kind": "differentiate", "point": "P1", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "rr-sphere",
+  "topic": "related_rates",
+  "prompt": "A sphere's radius grows at 2 cm/s. How fast is its volume growing when r = 3 cm? (V = \\frac{4}{3}\\pi r^3)",
+  "variable": "t",
+  "variables": ["r", "t", "dV_dt", "dr_dt"],
+  "answer": "72*pi",
+  "points": [
+   {"id": "P1", "label": "Differentiates V with respect to t", "value": 2, "kind": "cas", "check": {"type": "equation", "expected": "Eq(dV_dt, 4*pi*r**2*dr_dt)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Substitutes r = 3 and dr/dt = 2", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(r, 3).subs(dr_dt, 2)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "\\frac{dV}{dt} = 4\\pi r^2 \\frac{dr}{dt}", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 4\\pi (3)^2 (2)", "kind": "substitute", "point": null, "sub": null, "words": false},
+   {"latex": "= 72\\pi", "kind": "rewrite", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "rr-ladder",
+  "topic": "related_rates",
+  "prompt": "A 10 ft ladder leans on a wall. Its foot slides away at 1 ft/s. How fast is the top moving when the foot is 6 ft from the wall?",
+  "variable": "t",
+  "variables": ["x", "y", "t", "dx_dt", "dy_dt"],
+  "answer": "Rational(-3, 4)",
+  "points": [
+   {"id": "P1", "label": "Relates x and y", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(x**2 + y**2, 100)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Differentiates with respect to t", "value": 2, "kind": "cas", "check": {"type": "equation", "expected": "Eq(2*x*dx_dt + 2*y*dy_dt, 0)"}, "requires": [], "followThrough": false},
+   {"id": "P3", "label": "Rate of the top", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "Rational(-3, 4)"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "x^2 + y^2 = 100", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "2x\\frac{dx}{dt} + 2y\\frac{dy}{dt} = 0", "kind": "differentiate", "point": "P2", "sub": null, "words": false},
+   {"latex": "2(6)(1) + 2(8)\\frac{dy}{dt} = 0", "kind": "substitute", "point": null, "sub": null, "words": false},
+   {"latex": "\\frac{dy}{dt} = -\\frac{3}{4}", "kind": "rewrite", "point": "P3", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "rr-circle",
+  "topic": "related_rates",
+  "prompt": "A circle's radius grows at 3 cm/s. How fast is its area growing when r = 5 cm?",
+  "variable": "t",
+  "variables": ["r", "t", "dA_dt", "dr_dt"],
+  "answer": "30*pi",
+  "points": [
+   {"id": "P1", "label": "Differentiates A with respect to t", "value": 2, "kind": "cas", "check": {"type": "equation", "expected": "Eq(dA_dt, 2*pi*r*dr_dt)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Substitutes r = 5 and dr/dt = 3", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(r, 5).subs(dr_dt, 3)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "A = \\pi r^2", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "\\frac{dA}{dt} = 2\\pi r \\frac{dr}{dt}", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 2\\pi(5)(3) = 30\\pi", "kind": "substitute", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "opt-rectangle",
+  "topic": "optimisation",
+  "prompt": "A rectangle has perimeter 40. Find the largest possible area.",
+  "variable": "x",
+  "variables": ["x"],
+  "answer": "100",
+  "points": [
+   {"id": "P1", "label": "Area in one variable", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "x*(20 - x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Differentiates the area", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "diff({P1}, x)"}, "requires": [], "followThrough": true},
+   {"id": "P3", "label": "Critical point", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "solve({P2}, x)[0]"}, "requires": [], "followThrough": true},
+   {"id": "P4", "label": "Justifies that it is a maximum", "value": 1, "kind": "judge", "criterion": "Justifies the maximum, for example the second derivative is negative or the derivative changes sign from positive to negative", "requires": [], "followThrough": false},
+   {"id": "P5", "label": "Largest area", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, {P3})"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "A = x(20 - x)", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "A' = 20 - 2x", "kind": "differentiate", "point": "P2", "sub": null, "words": false},
+   {"latex": "x = 10", "kind": "unknown", "point": "P3", "sub": null, "words": false},
+   {"latex": "\\text{second derivative is } -2 \\text{, negative, so maximum}", "kind": "unknown", "point": "P4", "sub": null, "words": true},
+   {"latex": "A = 10(10) = 100", "kind": "unknown", "point": "P5", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "opt-sum",
+  "topic": "optimisation",
+  "prompt": "Find the minimum value of f(x) = x + \\frac{4}{x} for x > 0.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "x + 4/x",
+  "answer": "4",
+  "points": [
+   {"id": "P1", "label": "Differentiates", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "diff(x + 4/x, x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Critical point in the domain", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "2"}, "requires": [], "followThrough": false},
+   {"id": "P3", "label": "Minimum value", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P2}) + 4/({P2})"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "f'(x) = 1 - \\frac{4}{x^2}", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "x = 2", "kind": "unknown", "point": "P2", "sub": null, "words": false},
+   {"latex": "f(2) = 2 + \\frac{4}{2} = 4", "kind": "unknown", "point": "P3", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "opt-box",
+  "topic": "optimisation",
+  "prompt": "Squares of side x are cut from the corners of a 12 by 12 sheet and the sides folded up. Find the largest volume of the open box.",
+  "variable": "x",
+  "variables": ["x"],
+  "answer": "128",
+  "points": [
+   {"id": "P1", "label": "Volume in one variable", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "x*(12 - 2*x)**2"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Differentiates the volume", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "diff({P1}, x)"}, "requires": [], "followThrough": true},
+   {"id": "P3", "label": "Critical point in the domain", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "2"}, "requires": [], "followThrough": false},
+   {"id": "P4", "label": "Largest volume", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, {P3})"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "V = x(12 - 2x)^2", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "V' = (12-2x)^2 - 4x(12-2x)", "kind": "differentiate", "point": "P2", "sub": null, "words": false},
+   {"latex": "x = 2", "kind": "unknown", "point": "P3", "sub": null, "words": false},
+   {"latex": "V = 2(8)^2 = 128", "kind": "unknown", "point": "P4", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "mvt-quadratic",
+  "topic": "mvt",
+  "prompt": "Find the value c guaranteed by the Mean Value Theorem for f(x) = x^2 on [1, 3].",
+  "variable": "x",
+  "variables": ["x", "c"],
+  "answer": "2",
+  "points": [
+   {"id": "P1", "label": "States the hypotheses", "value": 1, "kind": "judge", "criterion": "States that f is continuous on [1, 3] and differentiable on (1, 3)", "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Average rate of change", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "(3**2 - 1**2)/(3 - 1)"}, "requires": [], "followThrough": false},
+   {"id": "P3", "label": "Sets f'(c) equal to it", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(2*c, {P2})"}, "requires": [], "followThrough": true},
+   {"id": "P4", "label": "Value of c", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "{P2}/2"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "\\text{f is continuous on [1,3] and differentiable on (1,3)}", "kind": "unknown", "point": "P1", "sub": null, "words": true},
+   {"latex": "\\frac{9 - 1}{3 - 1} = 4", "kind": "unknown", "point": "P2", "sub": null, "words": false},
+   {"latex": "2c = 4", "kind": "unknown", "point": "P3", "sub": null, "words": false},
+   {"latex": "c = 2", "kind": "rewrite", "point": "P4", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "mvt-cubic",
+  "topic": "mvt",
+  "prompt": "Find the value c in (0, 2) guaranteed by the Mean Value Theorem for f(x) = x^3 - x on [0, 2].",
+  "variable": "x",
+  "variables": ["x", "c"],
+  "answer": "2*sqrt(3)/3",
+  "points": [
+   {"id": "P1", "label": "Average rate of change", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "((2**3 - 2) - 0)/(2 - 0)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Sets f'(c) equal to it", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(3*c**2 - 1, {P1})"}, "requires": [], "followThrough": true},
+   {"id": "P3", "label": "Value of c in the interval", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "2*sqrt(3)/3"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\frac{6 - 0}{2 - 0} = 3", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "3c^2 - 1 = 3", "kind": "unknown", "point": "P2", "sub": null, "words": false},
+   {"latex": "c^2 = \\frac{4}{3}", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "c = \\frac{2}{\\sqrt{3}}", "kind": "unknown", "point": "P3", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "riemann-right",
+  "topic": "riemann",
+  "prompt": "Estimate \\int_0^2 x^2 \\, dx with a right Riemann sum using 4 equal subintervals.",
+  "variable": "x",
+  "variables": ["x"],
+  "answer": "Rational(15, 4)",
+  "points": [
+   {"id": "P1", "label": "Width of each subinterval", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "Rational(1, 2)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Value of the sum", "value": 2, "kind": "cas", "check": {"type": "exact_value", "expected": "Rational(15, 4)"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\Delta x = \\frac{2 - 0}{4} = \\frac{1}{2}", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\frac{1}{2}\\left(\\frac{1}{4} + 1 + \\frac{9}{4} + 4\\right)", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "= \\frac{15}{4}", "kind": "rewrite", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "riemann-left",
+  "topic": "riemann",
+  "prompt": "Estimate \\int_0^3 (2x + 1) \\, dx with a left Riemann sum using 3 equal subintervals.",
+  "variable": "x",
+  "variables": ["x"],
+  "answer": "9",
+  "points": [
+   {"id": "P1", "label": "Width of each subinterval", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "1"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Value of the sum", "value": 2, "kind": "cas", "check": {"type": "exact_value", "expected": "9"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\Delta x = 1", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "1(1 + 3 + 5)", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "= 9", "kind": "rewrite", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "ftc-poly",
+  "topic": "ftc",
+  "prompt": "Evaluate \\int_0^2 3x^2 \\, dx.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Integral(3*x**2, (x, 0, 2))",
+  "answer": "8",
+  "points": [
+   {"id": "P1", "label": "Antiderivative", "value": 1, "kind": "cas", "check": {"type": "antiderivative", "expected": "3*x**2"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Evaluates between the limits", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, 2) - ({P1}).subs(x, 0)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "\\int_0^2 3x^2 \\, dx", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "x^3", "kind": "integrate", "point": "P1", "sub": null, "words": false},
+   {"latex": "2^3 - 0^3", "kind": "evaluate", "point": null, "sub": null, "words": false},
+   {"latex": "= 8", "kind": "rewrite", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "ftc-root",
+  "topic": "ftc",
+  "prompt": "Evaluate \\int_1^4 \\left(2x + \\frac{1}{\\sqrt{x}}\\right) dx.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Integral(2*x + 1/sqrt(x), (x, 1, 4))",
+  "answer": "17",
+  "points": [
+   {"id": "P1", "label": "Antiderivative", "value": 2, "kind": "cas", "check": {"type": "antiderivative", "expected": "2*x + 1/sqrt(x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Evaluates between the limits", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, 4) - ({P1}).subs(x, 1)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "x^2 + 2\\sqrt{x}", "kind": "integrate", "point": "P1", "sub": null, "words": false},
+   {"latex": "(16 + 4) - (1 + 2)", "kind": "evaluate", "point": null, "sub": null, "words": false},
+   {"latex": "= 17", "kind": "rewrite", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "ftc-part-one",
+  "topic": "ftc",
+  "prompt": "Find \\frac{d}{dx} \\int_0^x \\cos(t^2) \\, dt.",
+  "variable": "x",
+  "variables": ["x", "t"],
+  "answer": "cos(x**2)",
+  "points": [
+   {"id": "P1", "label": "Applies the Fundamental Theorem", "value": 2, "kind": "cas", "check": {"type": "equivalent", "expected": "cos(x**2)"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "\\cos(x^2)", "kind": "unknown", "point": "P1", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "ftc-trig",
+  "topic": "ftc",
+  "prompt": "Evaluate \\int_0^{\\pi/2} \\cos x \\, dx.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Integral(cos(x), (x, 0, pi/2))",
+  "answer": "1",
+  "points": [
+   {"id": "P1", "label": "Antiderivative", "value": 1, "kind": "cas", "check": {"type": "antiderivative", "expected": "cos(x)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Evaluates between the limits", "value": 1, "kind": "cas", "check": {"type": "exact_value", "expected": "({P1}).subs(x, pi/2) - ({P1}).subs(x, 0)"}, "requires": [], "followThrough": true}
+  ],
+  "model": [
+   {"latex": "\\sin x", "kind": "integrate", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\sin\\left(\\frac{\\pi}{2}\\right) - \\sin(0)", "kind": "evaluate", "point": null, "sub": null, "words": false},
+   {"latex": "= 1", "kind": "rewrite", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "ftc-indefinite",
+  "topic": "ftc",
+  "prompt": "Find \\int (6x^2 - 4x + 1) \\, dx.",
+  "variable": "x",
+  "variables": ["x"],
+  "given": "Integral(6*x**2 - 4*x + 1, x)",
+  "answer": "2*x**3 - 2*x**2 + x",
+  "points": [
+   {"id": "P1", "label": "Antiderivative", "value": 3, "kind": "cas", "check": {"type": "antiderivative", "expected": "6*x**2 - 4*x + 1", "requireConstant": true}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "2x^3 - 2x^2 + x + C", "kind": "integrate", "point": "P1", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "sub-cos",
+  "topic": "substitution",
+  "prompt": "Find \\int 2x\\cos(x^2) \\, dx.",
+  "variable": "x",
+  "variables": ["x", "u"],
+  "given": "Integral(2*x*cos(x**2), x)",
+  "answer": "sin(x**2)",
+  "points": [
+   {"id": "P1", "label": "Chooses the substitution", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(u, x**2)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Integral in terms of u", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "cos(u)"}, "requires": [], "followThrough": false},
+   {"id": "P3", "label": "Antiderivative in terms of x", "value": 1, "kind": "cas", "check": {"type": "antiderivative", "expected": "2*x*cos(x**2)", "requireConstant": true}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "u = x^2", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\int \\cos u \\, du", "kind": "unknown", "point": "P2", "sub": null, "words": false},
+   {"latex": "\\sin u + C", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "\\sin(x^2) + C", "kind": "unknown", "point": "P3", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "sub-power",
+  "topic": "substitution",
+  "prompt": "Find \\int x(x^2 + 1)^5 \\, dx.",
+  "variable": "x",
+  "variables": ["x", "u"],
+  "given": "Integral(x*(x**2 + 1)**5, x)",
+  "answer": "(x**2 + 1)**6/12",
+  "points": [
+   {"id": "P1", "label": "Chooses the substitution", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(u, x**2 + 1)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Integral in terms of u", "value": 1, "kind": "cas", "check": {"type": "equivalent", "expected": "u**5/2"}, "requires": [], "followThrough": false},
+   {"id": "P3", "label": "Antiderivative in terms of x", "value": 1, "kind": "cas", "check": {"type": "antiderivative", "expected": "x*(x**2 + 1)**5", "requireConstant": true}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "u = x^2 + 1", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\int \\frac{1}{2} u^5 \\, du", "kind": "unknown", "point": "P2", "sub": null, "words": false},
+   {"latex": "\\frac{u^6}{12} + C", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "\\frac{(x^2+1)^6}{12} + C", "kind": "unknown", "point": "P3", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "sub-definite",
+  "topic": "substitution",
+  "prompt": "Evaluate \\int_0^1 2x e^{x^2} \\, dx.",
+  "variable": "x",
+  "variables": ["x", "u"],
+  "given": "Integral(2*x*exp(x**2), (x, 0, 1))",
+  "answer": "E - 1",
+  "points": [
+   {"id": "P1", "label": "Chooses the substitution", "value": 1, "kind": "cas", "check": {"type": "equation", "expected": "Eq(u, x**2)"}, "requires": [], "followThrough": false},
+   {"id": "P2", "label": "Value of the integral", "value": 2, "kind": "cas", "check": {"type": "exact_value", "expected": "E - 1"}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "u = x^2", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\int_0^1 e^u \\, du", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "= e - 1", "kind": "evaluate", "point": "P2", "sub": null, "words": false}
+  ]
+ },
+ {
+  "id": "sub-trig",
+  "topic": "substitution",
+  "prompt": "Find \\int \\sin x \\cos x \\, dx.",
+  "variable": "x",
+  "variables": ["x", "u"],
+  "given": "Integral(sin(x)*cos(x), x)",
+  "answer": "sin(x)**2/2",
+  "points": [
+   {"id": "P1", "label": "Antiderivative", "value": 3, "kind": "cas", "check": {"type": "antiderivative", "expected": "sin(x)*cos(x)", "requireConstant": true}, "requires": [], "followThrough": false}
+  ],
+  "model": [
+   {"latex": "u = \\sin x", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "\\int u \\, du", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "\\frac{\\sin^2 x}{2} + C", "kind": "unknown", "point": "P1", "sub": null, "words": false}
+  ]
+ }
+]

@@ -1,0 +1,113 @@
+/* Exam-paper theme. Page layout lives in app/exam.css; this file holds tokens and the shared components. */
+:root {
+  --bg: #fbfbf8; --grid: #e3e8ef; --paper: #fffefb; --ink: #16213a; --pen: #1c2a47;
+  --red: #dd1b27; --red-text: #c4151f; --red-deep: #b9141e; --margin: #e9a3a6; --muted: #5f6b7a; --line: #e2e6ec; --rule: #cbd3df;
+  --note: #fff1a8; --green: #27ae60; --radius: 8px;
+  --font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  --display: var(--font-display, var(--font));
+  --hand: var(--font-hand, "Bradley Hand", "Marker Felt", "Segoe Print", "Comic Sans MS", cursive);
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; color: var(--ink); font-family: var(--font); }
+html { scroll-behavior: smooth; }
+body {
+  overflow-x: hidden; line-height: 1.55; -webkit-font-smoothing: antialiased;
+  background-color: var(--bg);
+  /* Graph paper: a faint square grid, the kind an exam is written on. */
+  background-image: linear-gradient(var(--grid) 1px, transparent 1px), linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 26px 26px;
+}
+a { color: inherit; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+.hand { font-family: var(--hand); }
+.sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; border: 0; }
+:focus-visible { outline: 3px solid var(--ink); outline-offset: 3px; border-radius: 6px; }
+
+/* Buttons: flat, squared, like a stamp. .btn stays for components that use it (gate, buy, waitlist, thanks). */
+.pill, .btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  min-height: 50px; padding: 12px 22px; border-radius: 6px;
+  font: inherit; font-size: 1rem; font-weight: 650; letter-spacing: -0.01em; line-height: 1.2;
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+  background: var(--paper); color: var(--ink); border: 1.5px solid var(--ink);
+  transition: transform .12s ease, background-color .12s ease;
+}
+.pill-red, .btn.primary { color: #fff; border-color: var(--red-deep); background: var(--red); }
+.pill-red:hover, .btn.primary:hover { background: var(--red-deep); }
+.pill:hover, .btn:hover { transform: translateY(-1px); }
+.pill:active, .btn:active { transform: translateY(1px); }
+.btn.small { min-height: 44px; padding: 8px 16px; font-size: .9rem; }
+.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
+
+/* Live demo (TryIt) */
+.tryit .tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 10px; }
+.tryit .tabs button { border: 1.5px solid var(--rule); background: #fff; border-radius: 6px; padding: 8px 18px; min-height: 44px; font: inherit; font-weight: 600; cursor: pointer; color: var(--ink); }
+.tryit .tabs button[aria-selected='true'] { background: var(--ink); color: #fff; border-color: var(--ink); }
+.tryit .question { font-weight: 700; font-size: 1.1rem; margin: 6px 0 12px; }
+/* The question as an exam prints it (components/QuestionMath). */
+.qm { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 0 .3em; font-family: Georgia, "Times New Roman", serif; font-weight: 400; font-size: clamp(1.35rem, 3.2vw, 1.9rem); line-height: 1.2; }
+.qm i { font-style: italic; }
+.qm-int { display: inline-flex; align-items: center; }
+.qm-sign { font-size: 2.2em; line-height: 1; margin-right: .05em; }
+.qm-lims { display: inline-flex; flex-direction: column; justify-content: space-between; align-self: stretch; padding: .1em 0; font-size: .6em; }
+.qm-frac { display: inline-flex; flex-direction: column; align-items: center; vertical-align: middle; }
+.qm-frac > span { padding: 0 .2em; }
+.qm-frac > span:first-child { border-bottom: 1.5px solid currentColor; }
+.qm-sqrt > span { border-top: 1.5px solid currentColor; padding: 0 .1em; }
+.qm-lim { display: inline-flex; flex-direction: column; align-items: center; line-height: 1; }
+.qm-lim > span:last-child { font-size: .6em; margin-top: .15em; }
+.sheet { position: relative; width: 100%; aspect-ratio: 900 / 620; background: var(--paper); border: 1.5px solid var(--rule); border-radius: 6px; overflow: hidden; }
+.sheet canvas { position: absolute; inset: 0; width: 100%; height: 100%; touch-action: none; }
+.sheet canvas.overlay { pointer-events: none; }
+.sheet.thinking { box-shadow: 0 0 0 3px rgba(242, 153, 74, 0.35); }
+.demo-bar { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; justify-content: space-between; margin: 0 0 10px; }
+.demo-msg[data-status='error'] { color: var(--red-text); }
+.demo-msg[data-status='correct'] { color: #1e7a46; }
+.demo-msg[data-status='correct']::before { content: '✓ '; font-weight: 700; }
+/* Keep the 900:620 aspect (pointer mapping uses getBoundingClientRect) but cap the height at 60vh by narrowing the sheet. */
+.tryit .sheet { max-width: min(100%, calc(60vh * 900 / 620)); margin-inline: auto; }
+@media (max-width: 859px) {
+  /* On phones the reply bar stays in view while drawing on the sheet below it. */
+  .tryit .demo-bar { position: sticky; top: 0; z-index: 2; background: var(--paper); padding: 8px 0; margin-bottom: 4px; gap: 6px; }
+  /* One row of buttons so the sticky bar covers as little of the sheet as possible;
+     it wraps rather than hiding a button off the edge (e.g. when "Teach me" shows). */
+  .tryit .demo-actions { flex-wrap: wrap; gap: 6px; max-width: 100%; }
+  .tryit .demo-actions button { padding: 8px 10px; font-size: 0.9rem; white-space: nowrap; flex: none; }
+}
+/* Narrow phones: shorter labels so the four buttons fit one row at 360px. */
+@media (max-width: 400px) {
+  .tryit .wide-only { display: none; }
+}
+.demo-msg { margin: 0; flex: 1 1 260px; min-height: 1.4em; font-weight: 500; }
+.demo-actions { display: flex; gap: 8px; flex-wrap: wrap; }
+.demo-actions button, .hero-demo figcaption button { border: 1.5px solid var(--rule); background: #fff; border-radius: 6px; padding: 8px 16px; min-height: 44px; font: inherit; font-weight: 600; cursor: pointer; color: var(--ink); }
+.demo-actions button.primary { background: linear-gradient(180deg, #e4252f, #b9141e); color: #fff; border-color: transparent; }
+.demo-actions button.check { border-color: var(--ink); }
+.demo-actions button:disabled { opacity: 0.5; cursor: default; }
+.hero-demo { margin: 0; }
+.hero-demo figcaption { display: flex; gap: 10px; align-items: center; justify-content: space-between; margin-top: 8px; color: var(--muted); font-style: italic; }
+.hero-demo .sheet canvas { touch-action: auto; }
+
+/* Shared bits used by components outside the landing page */
+.cta { display: flex; gap: 10px; flex-wrap: wrap; margin-top: 16px; }
+.buy { display: grid; gap: 12px; max-width: 420px; }
+.buy .board, .buy .agree { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.buy select, .waitlist input, .waitlist select { font: inherit; padding: 12px 14px; min-height: 48px; border: 1.5px solid var(--rule); border-radius: 6px; min-width: 0; background: #fff; color: var(--ink); }
+.left { color: var(--muted); margin: 0; }
+.waitlist { display: grid; gap: 10px; max-width: 440px; }
+.roles { display: flex; gap: 16px; flex-wrap: wrap; }
+.roles label { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; }
+.thanks, .legal { padding-top: 40px; padding-bottom: 60px; max-width: 720px; }
+
+/* Human gate (Cloudflare Turnstile) shown before the page opens */
+.gate { position: fixed; inset: 0; z-index: 1000; background: var(--bg); overflow-y: auto; display: grid; place-items: center; padding: 16px; }
+/* The page is rendered underneath (for crawlers and link previews) but hidden and unscrollable until the check passes. */
+.gated { visibility: hidden; }
+body:has(.gate) { overflow: hidden; }
+.gate-card { width: 100%; max-width: 380px; background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 20px; display: flex; flex-direction: column; align-items: center; gap: 14px; text-align: center; box-shadow: 0 6px 24px rgba(28, 39, 51, 0.06); }
+.gate-logo { font-size: 1.4rem; }
+.gate-logo::first-letter { color: var(--red); }
+.gate-msg { margin: 0; font-weight: 600; }
+.gate-widget { display: flex; justify-content: center; min-height: 65px; max-width: 100%; }
+.gate-widget[hidden] { display: none; }
+.gate-note { margin: 0; font-size: 0.8rem; color: var(--muted); }

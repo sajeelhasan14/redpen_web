@@ -1,0 +1,251 @@
+[
+ {
+  "id": "der-power-eval-wrong-derivative", "questionId": "der-power-eval",
+  "lines": [
+   {"latex": "f'(x) = 3x^{2} + x", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "f'(2) = 14", "kind": "substitute", "point": "P2", "sub": {"variable": "x", "latex": "2"}, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned_follow_through"}, "red": [1], "flags": []
+ },
+ {
+  "id": "der-power-eval-easier", "questionId": "der-power-eval",
+  "lines": [
+   {"latex": "f'(x) = 5", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "f'(2) = 5", "kind": "substitute", "point": "P2", "sub": {"variable": "x", "latex": "2"}, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "not_earned"}, "red": [1], "flags": []
+ },
+ {
+  "id": "der-chain-missing-inner", "questionId": "der-chain",
+  "lines": [
+   {"latex": "\\frac{dy}{dx} = \\cos(x^{2})", "kind": "differentiate", "point": "P1", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned"}, "red": [1], "flags": []
+ },
+ {
+  "id": "ftc-poly-wrong-antiderivative", "questionId": "ftc-poly",
+  "lines": [
+   {"latex": "\\int_{0}^{2} 3x^{2} \\, dx", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "3x^{3}", "kind": "integrate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 24", "kind": "evaluate", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned_follow_through"}, "red": [2], "flags": []
+ },
+ {
+  "id": "ftc-indefinite-no-constant", "questionId": "ftc-indefinite",
+  "lines": [
+   {"latex": "2x^{3} - 2x^{2} + x", "kind": "integrate", "point": "P1", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned"}, "red": [], "flags": ["missing_plus_c"]
+ },
+ {
+  "id": "opt-rectangle-wrong-area", "questionId": "opt-rectangle",
+  "lines": [
+   {"latex": "A = x(40 - x)", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "A' = 40 - 2x", "kind": "differentiate", "point": "P2", "sub": null, "words": false},
+   {"latex": "x = 20", "kind": "unknown", "point": "P3", "sub": null, "words": false},
+   {"latex": "A = 20(20) = 400", "kind": "unknown", "point": "P5", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned_follow_through", "P3": "earned_follow_through", "P4": "not_earned", "P5": "earned_follow_through"}, "red": [1], "flags": []
+ },
+ {
+  "id": "rr-sphere-wrong-power", "questionId": "rr-sphere",
+  "lines": [
+   {"latex": "\\frac{dV}{dt} = 4\\pi r \\frac{dr}{dt}", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 24\\pi", "kind": "substitute", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned_follow_through"}, "red": [1], "flags": []
+ },
+ {
+  "id": "lim-factor-wrong-cancel", "questionId": "lim-factor",
+  "lines": [
+   {"latex": "\\lim_{x \\to 2} (x - 2)", "kind": "rewrite", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 0", "kind": "take_limit", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned_follow_through"}, "red": [1], "flags": []
+ },
+ {
+  "id": "sub-trig-other-form", "questionId": "sub-trig",
+  "lines": [
+   {"latex": "-\\frac{\\cos^{2} x}{2} + C", "kind": "unknown", "point": "P1", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "riemann-right-decimals", "questionId": "riemann-right",
+  "lines": [
+   {"latex": "\\Delta x = 0.5", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "3.75", "kind": "unknown", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "der-product-mislabelled-step", "questionId": "der-product",
+  "lines": [
+   {"latex": "2x \\sin x + x^{2} \\cos x", "kind": "rewrite", "point": "P1", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "der-power-eval-answer-only", "questionId": "der-power-eval",
+  "lines": [
+   {"latex": "16", "kind": "unknown", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "lim-sin-other-method", "questionId": "lim-sin",
+  "lines": [
+   {"latex": "\\lim_{x \\to 0} 3 \\cdot \\frac{\\sin(3x)}{3x}", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "= 3 \\cdot 1", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "= 3", "kind": "rewrite", "point": null, "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "opt-sum-rearranged", "questionId": "opt-sum",
+  "lines": [
+   {"latex": "f'(x) = 1 - \\frac{4}{x^{2}}", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\frac{4}{x^{2}} = 1", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "x^{2} = 4", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "x = 2", "kind": "rewrite", "point": "P2", "sub": null, "words": false},
+   {"latex": "f(2) = 2 + \\frac{4}{2} = 4", "kind": "substitute", "point": "P3", "sub": {"variable": "x", "latex": "2"}, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "rr-ladder-solved-forms", "questionId": "rr-ladder",
+  "lines": [
+   {"latex": "y = \\sqrt{100 - x^{2}}", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\frac{dy}{dt} = -\\frac{x}{y}\\frac{dx}{dt}", "kind": "differentiate", "point": "P2", "sub": null, "words": false},
+   {"latex": "= -\\frac{6}{8}(1)", "kind": "substitute", "point": null, "sub": null, "words": false},
+   {"latex": "= -\\frac{3}{4}", "kind": "rewrite", "point": "P3", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "der-implicit-primes", "questionId": "der-implicit",
+  "lines": [
+   {"latex": "2x + 2yy' = 0", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "y' = -\\frac{x}{y}", "kind": "rewrite", "point": "P2", "sub": null, "words": false},
+   {"latex": "= -\\frac{3}{4}", "kind": "substitute", "point": "P3", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "rr-sphere-early-substitution", "questionId": "rr-sphere",
+  "lines": [
+   {"latex": "\\frac{dV}{dt} = 4\\pi r^{2} \\cdot 2", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 4\\pi (3)^{2} (2) = 72\\pi \\text{ cm}^{3}/\\text{s}", "kind": "substitute", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "unchecked", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "rr-sphere-primes", "questionId": "rr-sphere",
+  "lines": [
+   {"latex": "V' = 4\\pi r^{2} r'", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 4\\pi (3)^{2} (2)", "kind": "substitute", "point": "P2", "sub": null, "words": false},
+   {"latex": "= 72\\pi", "kind": "evaluate", "point": null, "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "sub-cos-labelled-steps", "questionId": "sub-cos",
+  "lines": [
+   {"latex": "\\text{Let } u = x^{2}", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\int \\cos u \\, du", "kind": "rewrite", "point": "P2", "sub": null, "words": false},
+   {"latex": "\\sin u + C", "kind": "integrate", "point": null, "sub": null, "words": false},
+   {"latex": "\\sin(x^{2})", "kind": "substitute", "point": "P3", "sub": null, "words": false},
+   {"latex": "= \\sin(x^{2}) + C", "kind": "rewrite", "point": null, "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "sub-power-slash-fractions", "questionId": "sub-power",
+  "lines": [
+   {"latex": "u = x^{2} + 1", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\int 1/2 u^{5} \\, du", "kind": "rewrite", "point": "P2", "sub": null, "words": false},
+   {"latex": "1/12 u^{6} + C", "kind": "integrate", "point": null, "sub": null, "words": false},
+   {"latex": "1/12 (x^{2}+1)^{6} + C", "kind": "substitute", "point": "P3", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "mvt-quadratic-separate-evaluations", "questionId": "mvt-quadratic",
+  "lines": [
+   {"latex": "\\text{f is continuous on [1,3] and differentiable on (1,3)}", "kind": "unknown", "point": "P1", "sub": null, "words": true},
+   {"latex": "f(3) = 3^{2} = 9", "kind": "evaluate", "point": null, "sub": null, "words": false},
+   {"latex": "f(1) = 1^{2} = 1", "kind": "evaluate", "point": null, "sub": null, "words": false},
+   {"latex": "\\frac{9 - 1}{3 - 1} = 4", "kind": "evaluate", "point": "P2", "sub": null, "words": false},
+   {"latex": "2c = 4", "kind": "unknown", "point": "P3", "sub": null, "words": false},
+   {"latex": "c = 2", "kind": "rewrite", "point": "P4", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned", "P4": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "der-tangent-point-slope", "questionId": "der-tangent",
+  "lines": [
+   {"latex": "f'(x) = 2x - 3", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "f'(2) = 2(2) - 3 = 1", "kind": "substitute", "point": "P2", "sub": {"variable": "x", "latex": "2"}, "words": false},
+   {"latex": "f(2) = 2^{2} - 3(2) = -2", "kind": "substitute", "point": null, "sub": {"variable": "x", "latex": "2"}, "words": false},
+   {"latex": "y + 2 = 1(x - 2)", "kind": "unknown", "point": "P3", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "riemann-right-formula-first", "questionId": "riemann-right",
+  "lines": [
+   {"latex": "\\Delta x = \\frac{b - a}{n}", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "= \\frac{2 - 0}{4} = \\frac{1}{2}", "kind": "substitute", "point": null, "sub": null, "words": false},
+   {"latex": "\\frac{1}{2}\\left(\\frac{1}{4} + 1 + \\frac{9}{4} + 4\\right)", "kind": "unknown", "point": null, "sub": null, "words": false},
+   {"latex": "= \\frac{15}{4}", "kind": "evaluate", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "opt-rectangle-derivative-set-to-zero", "questionId": "opt-rectangle",
+  "lines": [
+   {"latex": "A = x(20 - x)", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "\\frac{dA}{dx} = 20 - 2x", "kind": "differentiate", "point": "P2", "sub": null, "words": false},
+   {"latex": "20 - 2x = 0", "kind": "rewrite", "point": "P3", "sub": null, "words": false},
+   {"latex": "x = 10", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "\\text{A'' is } -2 \\text{, negative, so a maximum}", "kind": "unknown", "point": "P4", "sub": null, "words": true},
+   {"latex": "A = 10(10) = 100", "kind": "substitute", "point": "P5", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned", "P3": "earned", "P4": "earned", "P5": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "lim-factor-answer-only", "questionId": "lim-factor",
+  "lines": [
+   {"latex": "4", "kind": "take_limit", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "ftc-poly-question-then-answer", "questionId": "ftc-poly",
+  "lines": [
+   {"latex": "\\int_{0}^{2} 3x^{2} \\, dx", "kind": "rewrite", "point": null, "sub": null, "words": false},
+   {"latex": "= 8", "kind": "evaluate", "point": "P2", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "not_earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "rr-circle-rounded-decimal", "questionId": "rr-circle",
+  "lines": [
+   {"latex": "\\frac{dA}{dt} = 2\\pi r \\frac{dr}{dt}", "kind": "differentiate", "point": "P1", "sub": null, "words": false},
+   {"latex": "= 2\\pi(5)(3) = 30\\pi", "kind": "substitute", "point": "P2", "sub": null, "words": false},
+   {"latex": "= 94.2", "kind": "evaluate", "point": null, "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "earned"}, "red": [], "flags": []
+ },
+ {
+  "id": "opt-rectangle-wrong-derivative-carried", "questionId": "opt-rectangle",
+  "lines": [
+   {"latex": "A = x(20 - x)", "kind": "unknown", "point": "P1", "sub": null, "words": false},
+   {"latex": "A' = 20 - x", "kind": "differentiate", "point": "P2", "sub": null, "words": false},
+   {"latex": "x = 20", "kind": "unknown", "point": "P3", "sub": null, "words": false},
+   {"latex": "A = 20(0) = 0", "kind": "substitute", "point": "P5", "sub": null, "words": false}
+  ],
+  "expect": {"P1": "earned", "P2": "not_earned", "P3": "earned_follow_through", "P4": "not_earned", "P5": "earned_follow_through"}, "red": [2], "flags": []
+ }
+]

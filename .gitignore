@@ -1,0 +1,15 @@
+node_modules
+.next
+.env*.local
+.vercel
+scripts/e2e-out
+fixtures/*.png
+fixtures/last-run.json
+tsconfig.tsbuildinfo
+.superpowers
+next-env.d.ts
+services/checker/.venv
+__pycache__
+.pytest_cache
+eval/*
+!eval/README.md

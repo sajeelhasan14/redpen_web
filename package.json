@@ -1,0 +1,39 @@
+{
+  "name": "redpen-maths",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "test": "node --import tsx --test \"tests/**/*.test.ts\"",
+    "migrate": "node scripts/migrate.mjs",
+    "fixtures": "python3 fixtures/make_demo.py",
+    "test:marking": "node fixtures/run-demo.js --runs 3",
+    "test:e2e": "node scripts/e2e.mjs",
+    "hero-audio": "node scripts/make-hero-audio.mjs",
+    "checker:dev": "cd services/checker && CHECKER_SECRET=dev .venv/bin/python -m uvicorn checker.app:app --port 8000 --workers 2",
+    "checker:test": "cd services/checker && .venv/bin/python -m pytest -q",
+    "eval:typed": "node --env-file-if-exists=.env.local --import tsx scripts/eval-engine.ts --typed",
+    "eval:engine": "node --env-file-if-exists=.env.local --import tsx scripts/eval-engine.ts --manifest eval/manifest.json"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.124.0",
+    "ioredis": "^6.0.0",
+    "next": "^16.3.4",
+    "pg": "^8.23.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "resend": "^6.0.0",
+    "zod": "^4.6.0"
+  },
+  "devDependencies": {
+    "@electric-sql/pglite": "^0.3.0",
+    "@types/node": "^22",
+    "@types/pg": "^8.23.1",
+    "@types/react": "^19",
+    "playwright": "^1.62.1",
+    "tsx": "^4.20.0",
+    "typescript": "^5"
+  }
+}
